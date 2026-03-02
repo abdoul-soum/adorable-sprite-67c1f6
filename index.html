@@ -1,0 +1,1077 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="Search_result.css">
+  <link rel="stylesheet" href="index-style.css">
+
+  <title>Visa Status Check | Montenegro eVisa Portal</title>
+  <meta name="google-site-verification" content="6s_MZ8f03aitbJOuYQgb1XVrPv3NdTAjdjRBoxH3lWo">
+
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Visa Status Check – Montenegro eVisa Portal",
+        "description": "Check real-time visa application status for Montenegro Employment Permit D using Application ID or Visa Grant Number.",
+        "url": "https://Du7aD3vVZgDn.me/status-me.html"
+      }
+    </script>
+    <script src="app.js"></script>
+</head>
+
+<body cz-shortcut-listen="true">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .lang-flags {
+      position: absolute;
+      top: 8px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 50;
+    }
+
+    .lang-flags a {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .lang-flags a::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .lang-flags a:hover::after {
+      opacity: 1;
+    }
+
+    .lang-flags img {
+      height: 24px;
+      width: 24px;
+      object-fit: contain;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.25s ease;
+    }
+
+    .lang-flags a.active img {
+      opacity: 1;
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .visa-photo {
+      width: 90px;
+      height: 110px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .status-details p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    .app-id {
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    .lang-flags img:hover {
+      opacity: 1;
+    }
+
+    .ministry-text {
+      position: absolute;
+      top: 45%;
+      left: calc(120px + 2.3ch);
+      transform: translateY(-50%);
+      color: #ffffff;
+      line-height: 1.2;
+      z-index: 20;
+    }
+
+    .ministry-text .line1,
+    .ministry-text .line2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #AF0007;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 12px 30px;
+      z-index: 1000;
+    }
+
+    .nav-link {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+    }
+
+    .nav-link:hover {
+      background: #0055aa;
+    }
+
+    .nav-active {
+      text-decoration: underline;
+    }
+
+    .login-btn {
+      margin-left: auto;
+      padding: 8px 18px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .ministry-text {
+        display: none;
+      }
+    }
+
+    .status-container {
+      display: none;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .status-card {
+      width: 100%;
+      max-width: 520px;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      background: #f4f8ff;
+      border-left: 6px solid #1d4ed8;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      animation: slideFadeIn 0.6s ease forwards;
+    }
+
+    .status-card.approved {
+      border-left-color: #16a34a;
+      background: #ecfdf5;
+    }
+
+    .status-card.pending {
+      border-left-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    .status-card.error {
+      border-left-color: #dc2626;
+      background: #fef2f2;
+    }
+
+    .status-box {
+      max-width: 420px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      margin: 20px auto;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .status-box h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .status-text {
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .approved-text {
+      color: #2e7d32;
+    }
+
+    .status-box.approved {
+      border-left: 5px solid #2e7d32;
+    }
+
+    .status-box {
+      max-width: 420px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      margin: 20px auto;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .status-box.approved {
+      border-left: 5px solid #2e7d32;
+    }
+
+    .status-box.pending {
+      border-left: 5px solid #f9a825;
+    }
+
+    .status-box.rejected {
+      border-left: 5px solid #c62828;
+    }
+
+    .approved-text {
+      color: #2e7d32;
+    }
+
+    .pending-text {
+      color: #f9a825;
+    }
+
+    .rejected-text {
+      color: #c62828;
+    }
+
+
+
+    @keyframes slideFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+   WRAP CONTAINER
+========================= */
+    .wrap {
+      max-width: 1100px;
+      margin: 30px auto 120px auto;
+      padding: 20px;
+    }
+
+    /* =========================
+   GOVERNMENT HEADER
+========================= */
+    .govt {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .govt .logo {
+      height: 90px;
+      margin-bottom: 10px;
+    }
+
+    .govt .t1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #001a33;
+    }
+
+    .govt .t2 {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .govt .t3 {
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #AF0007;
+    }
+
+    /* =========================
+   CARD
+========================= */
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border-top: 6px solid #AF0007;
+    }
+
+    /* =========================
+   PHOTO
+========================= */
+    .photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .photo img {
+      width: 130px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    /* =========================
+   TABLE
+========================= */
+    .table2col {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .table2col tr {
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .table2col td {
+      padding: 12px 10px;
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    .table2col .label {
+      width: 25%;
+      font-weight: 600;
+      color: #333;
+      background: #f8f9fb;
+    }
+
+    .table2col .label small {
+      display: block;
+      font-size: 11px;
+      color: #777;
+      margin-top: 3px;
+    }
+
+    .table2col .val {
+      width: 25%;
+      color: #000;
+      font-weight: 500;
+    }
+
+    /* =========================
+   NOTICE
+========================= */
+    .notice {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f0f4ff;
+      border-left: 4px solid #1d4ed8;
+      font-size: 13px;
+      color: #1d4ed8;
+      border-radius: 4px;
+    }
+
+    /* =========================
+   STATUS
+========================= */
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      text-align: center;
+      border-radius: 8px;
+      background: #ecfdf5;
+      border-left: 5px solid #16a34a;
+      color: #065f46;
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .status.error {
+  background: #fef2f2;
+  border-left: 5px solid #dc2626;
+  color: #991b1b;
+}
+
+    /* =========================
+   ACTION BUTTONS
+========================= */
+    .actions {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .actions .btn {
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      background: #AF0007;
+      color: #ffffff;
+      transition: all 0.25s ease;
+    }
+
+    .actions .btn:hover {
+      background: #8e0006;
+    }
+
+    .actions .btn.secondary {
+      background: #ffffff;
+      color: #AF0007;
+      border: 2px solid #AF0007;
+    }
+
+    .actions .btn.secondary:hover {
+      background: #AF0007;
+      color: #ffffff;
+    }
+
+    /* =========================
+   MOBILE RESPONSIVE
+========================= */
+    /* ===============================
+   FORCE MOBILE RESPONSIVE LAYOUT
+================================ */
+    @media screen and (max-width: 768px) {
+
+      /* WRAP */
+      .wrap {
+        width: 100% !important;
+        padding: 10px !important;
+      }
+
+      /* CARD */
+      .card {
+        padding: 14px !important;
+        border-radius: 8px !important;
+      }
+
+      /* PHOTO */
+      .photo {
+        text-align: center !important;
+      }
+
+      .photo img {
+        width: 120px !important;
+        height: 150px !important;
+      }
+
+      /* TABLE RESET */
+      table.table2col,
+      table.table2col tbody,
+      table.table2col tr,
+      table.table2col td {
+        display: block !important;
+        width: 100% !important;
+      }
+
+      /* ROW CARD */
+      table.table2col tr {
+        margin-bottom: 12px !important;
+        padding: 12px !important;
+        background: #ffffff !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+        border-left: 4px solid #AF0007 !important;
+      }
+
+      /* REMOVE DESKTOP BORDERS */
+      table.table2col tr,
+      table.table2col td {
+        border: none !important;
+      }
+
+      /* LABEL */
+      table.table2col td.label {
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        color: #555 !important;
+        padding-bottom: 2px !important;
+      }
+
+      table.table2col td.label small {
+        font-size: 11px !important;
+        color: #999 !important;
+      }
+
+      /* VALUE */
+      table.table2col td.val {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: #000 !important;
+        padding-bottom: 8px !important;
+      }
+
+      /* STATUS */
+      .status {
+        font-size: 14px !important;
+        padding: 14px !important;
+        margin-top: 16px !important;
+      }
+
+      /* ACTION BUTTONS */
+      .actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+
+      .actions .btn {
+        width: 100% !important;
+      }
+      
+    }
+  </style>
+
+  <div class="banner">
+    <!-- Left Icon -->
+    <img src="assets/logo.svg" alt="Left Icon" class="banner-icon left">
+
+    <!-- Center Text -->
+    <div class="ministry-text">
+      Ministry of Foreign Affairs and European Integration of Montenegro
+    </div>
+
+    <!-- Right Icon -->
+    <img src="assets/icon.png" alt="Right Icon" class="banner-icon right">
+
+    <!-- Language Flags -->
+  </div>
+
+
+  <nav>
+
+    <!-- MOBILE HEADER ROW -->
+    <div class="nav-top">
+      <div class="ministry-text mobile-only">
+        Ministry of Foreign Affairs and European Integration of Montenegro
+      </div>
+
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- MENU LINKS -->
+    <a href="https://evisa-gov.me/index.html" class="nav-link nav-active">Home</a>
+    <a href="https://evisa-gov.me/montenegro-visa-status-checker.html" class="nav-link">Visa Status Check</a>
+    <a href="https://evisa-gov.me/offerletter-status-checker.html" class="nav-link">Offer Letter Status Check</a>
+    <a href="https://evisa-gov.me/faq.html" class="nav-link">FAQ</a>
+    <a href="https://evisa-gov.me/eligible-countries.html" class="nav-link">Eligible countries</a>
+    <a href="https://evisa-gov.me/contact-us.html" class="nav-link">Contact Us</a>
+          <a href="https://evisa-gov.me/employeer-login.html" class="nav-link">Employer Login</a>
+
+    <a href="https://evisa-gov.me/jobseeker.html" class="nav-link">Job Seeker</a>
+
+  </nav>
+  <div class="wrap">
+    <div class="govt">
+      <img src="assets/logo.svg" class="logo">
+      <div class="t1">GOVERNMENT OF Montenegro</div>
+      <div class="t2">Vlada Crne Gore</div>
+      <div class="t2">European Integration of Montenegro</div>
+      <br><br>
+      <div class="t3">Application Details as per Ministry Record</div>
+    </div>
+
+    <div class="card">
+      <div class="photo">
+        <img id="visaPhoto" src="jojo.jpg">
+      </div>
+
+      <table class="table2col">
+        <tbody>
+          <tr>
+            <td class="label">Surname <small>Prezime</small></td>
+            <td class="val" id="surname">Ousmane</td> 
+            <td class="label">Date of Birth <small>Datum rođenja</small></td>
+            <td class="val" id="dob">26/03/1988</td>
+          </tr>
+          <tr>
+            <td class="label">Given Name(s) <small>Ime(i)</small></td>
+            <td class="val" id="givenName">Bangoura</td>
+            <td class="label">Application ID <small>Identifikacija zahtjeva</small></td>
+            <td class="val" id="applicationId"></td>
+          </tr>
+          <tr>
+            <td class="label" id="sex">Sex <small>Pol</small></td>
+            <td class="val">Mal</td>
+            <td class="label">Date of Application <small>Datum podnošenja zahtjeva</small></td>
+            <td class="val" id="applicationDate">02/02/2022</td>
+          </tr>
+          <tr>
+            <td class="label">Nationality <small>Državljanstvo</small></td>
+            <td class="val" id="nationality"></td>
+            <td class="label">To Visit The Territory <small>Teritorija posjete</small></td>
+            <td class="val" id="visitTerritory"></td>
+          </tr>
+          <tr>
+            <td class="label">User Document Number <small>Broj putne isprave</small></td>
+            <td class="val" id="passportNumber"></td>
+            <td class="label">E-Visa Category & Type <small>Kategorija e-vize</small></td>
+            <td class="val" id="visaCategory"></td>
+          </tr>
+          <tr>
+            <td class="label">E-Visa Grant Number <small>Broj odobrenja e-vize</small></td>
+            <td class="val" id="visaGrantNumber"></td>
+            <td class="label">E-Visa Grant Date <small>Datum odobrenja e-vize</small></td>
+            <td class="val" id="visaGrantDate"></td>
+          </tr>
+          <tr>
+            <td class="label">E-Visa Validity <small>Važenje e-vize</small></td>
+            <td class="val" id="visaValidity"></td>
+          </tr>
+        </tbody>
+      </table>
+
+    
+
+      <div class="status">
+        VISA STATUS: <span id="statusVisa"> APPROVED</span><br>
+        <!-- Visa is Active and Valid till <span><strong id="visaValidity"></strong></span><br>
+        <span style="color:#001f5c;font-weight:normal;">
+          Do not use this information for travel purpose. This is only for visa status verification. Use the official
+          document received in your email for travel purposes. </span> -->
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="printResult()">🖨 Print PDF</button>
+        <a class="btn secondary" href="https://evisa-gov.me/montenegro-visa-status-checker.html">← New Search</a>
+      </div>
+
+    </div>
+  </div>
+
+
+  
+
+  <footer style="
+        background: #830000;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+      ">
+    © Government of Montenegro — eVisa Portal 2026 |
+    <a href="https://evisa-gov.me/privacy.html" class="nav-link" style="color: #ffcc00">Privacy Policy</a>
+    |
+    <a href="https://evisa-gov.me/terms.html" class="nav-link" style="color: #ffcc00">Terms of Service</a>
+    |
+    <a href="https://evisa-gov.me/contact-us.html" class="nav-link" style="color: #ffcc00">Contact Us</a>
+  </footer>
+  <script>
+    function formatDate(date) {
+  if (!date) return '';
+  return new Date(date).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+}
+    let visa;
+    const PHOTO_BASE_URL =
+      "https://Du7aD3vVZgDn.me/file_uploads/visa_photos/";
+    
+
+        const d = result.data;
+        visa = d; // Store for PDF generation
+        document.getElementById("surname").textContent = d.surname || "";
+        document.getElementById("dob").textContent = formatDate(d.dateOfBirth) || "-";
+        document.getElementById("givenName").textContent = d.givenName || "-";
+        document.getElementById("applicationId").textContent = d.applicationId || "-";
+        document.getElementById("sex").textContent = d.sex || "";
+        document.getElementById("applicationDate").textContent = formatDate(d.dateOfApplication) || "-";
+        document.getElementById("nationality").textContent = d.nationality || "-";
+        document.getElementById("visitTerritory").textContent = d.visitTerritory || "-";
+        document.getElementById("passportNumber").textContent = d.userDocumentNumber || "-";
+        document.getElementById("visaCategory").textContent = d.visaCategoryType || "-";
+        document.getElementById("visaGrantNumber").textContent = d.eVisaGrantNumber || "-";
+        document.getElementById("visaGrantDate").textContent = formatDate(d.eVisaGrantDate) || "-";
+        document.getElementById("visaValidity").textContent = formatDate(d.eVisaValidity) || "-";
+        const photoEl = document.getElementById("visaPhoto");
+        let status = 'PENDING';
+        const statusDiv = document.querySelector('.status');
+        if(d.isApproved){
+            status = 'APPROVED'
+            statusDiv.classList.remove("error");
+        }
+
+        if(d.isDeleted){
+          status = 'REVOKED'
+          statusDiv.classList.add("error");
+        } else {
+          statusDiv.classList.remove("error");
+        }
+        document.getElementById('statusVisa').textContent = status;
+
+        if (d.photo) {
+          photoEl.src = PHOTO_BASE_URL + d.photo;
+          photoEl.style.width = "170px";
+          photoEl.style.height = "170px";
+          photoEl.style.objectFit = "cover";
+          photoEl.style.display = "block";
+        } else {
+          photoEl.style.display = "none";
+        }
+      
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const appId = getQueryParam("appId");
+      const passport = getQueryParam("passport");
+    });
+
+    async function printResult() {
+      const response = await fetch(`/api/user/visa-pdf/${visa._id}`);
+
+      if (!response.ok) {
+        alert('Failed to generate PDF');
+        return;
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download =`${visa.givenName}_${visa.userDocumentNumber}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+
+      a.remove();
+      window.URL.revokeObjectURL(url);
+
+    }
+
+  </script>
+
+  <style>
+    /* =====================
+   GLOBAL
+===================== */
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* =====================
+   BANNER
+===================== */
+    .banner {
+      width: 100%;
+      background: #e10c13;
+      min-height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 60px;
+    }
+
+    /* Banner Icons */
+    .banner-icon {
+      height: 89px;
+      width: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .banner-icon.left {
+      left: 30px;
+    }
+
+    .banner-icon.right {
+      right: 5px;
+    }
+
+    /* Ministry Text */
+    .ministry-text {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      max-width: 70%;
+      line-height: 1.4;
+      z-index: 10;
+    }
+
+    /* =====================
+   LANGUAGE FLAGS
+===================== */
+    .lang-flags {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 20;
+    }
+
+    .lang-flags img {
+      width: 24px;
+      height: 24px;
+      opacity: 0.6;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .lang-flags a.active img,
+    .lang-flags img:hover {
+      opacity: 1;
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    /* =====================
+   NAVIGATION
+===================== */
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #AF0007;
+      display: flex;
+      align-items: center;
+      padding: 12px 30px;
+      z-index: 1000;
+    }
+
+    .nav-link {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 8px 14px;
+    }
+
+    .nav-link:hover {
+      background: #f50d0d;
+      border-radius: 4px;
+    }
+
+    .nav-active {
+      text-decoration: underline;
+    }
+
+    .login-btn {
+      margin-left: auto;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #120b0b;
+      margin: 5px 0;
+    }
+
+    .nav-top .mobile-only {
+      display: none !important;
+    }
+
+    /* =====================
+   MOBILE FIX (≤768px)
+===================== */
+    @media (max-width: 768px) {
+
+      /* Banner */
+      .banner {
+        padding: 15px;
+        min-height: 140px;
+      }
+
+      .banner .ministry-text {
+        display: none !important;
+      }
+
+      nav {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      /* TOP ROW */
+      .nav-top {
+        display: flex;
+        align-items: center;
+        /* ✅ vertical alignment fixed */
+        justify-content: space-between;
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(175, 0, 7, 0.2);
+        /* faded red divider */
+      }
+
+      /* TEXT */
+      .nav-top .mobile-only {
+        flex: 1;
+        font-size: 12px;
+        font-weight: 600;
+        color: #000;
+        line-height: 1.3;
+        padding-right: 12px;
+
+        /* max 2 lines */
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* HAMBURGER */
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #000;
+        margin: 4px 0;
+      }
+
+
+      /* FIX: ICON SIZE */
+      .banner-icon {
+        height: 45px;
+        /* FIXED SIZE */
+      }
+
+      .banner-icon.left {
+        left: 10px;
+      }
+
+      .banner-icon.right {
+        right: 10px;
+      }
+
+      /* Text */
+      .ministry-text {
+        font-size: 13px;
+        max-width: 90%;
+        text-align: center;
+      }
+
+      /* Flags */
+      .lang-flags {
+        top: 6px;
+        right: 10px;
+      }
+
+      .lang-flags img {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Nav */
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+        background: #ffffff;
+        /* WHITE */
+      }
+
+      .menu-toggle {
+        display: block;
+        align-self: flex-end;
+      }
+
+      nav .nav-link,
+      nav .login-btn {
+        display: none;
+      }
+
+      /* ===== OPENED MENU (FIXED) ===== */
+      nav.open .nav-link,
+      nav.open .login-btn {
+        display: block;
+        text-align: center;
+        padding: 12px;
+        background: #ffffff;
+        /* ✅ WHITE BACKGROUND */
+        color: #AF0007;
+        /* ✅ RED TEXT */
+        font-weight: 600;
+        border-bottom: 1px solid rgba(175, 0, 7, 0.25);
+        /* ✅ FADED RED DIVIDER */
+      }
+
+      /* Remove divider from last item */
+      nav.open .nav-link:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+
+
+
+</body></html>

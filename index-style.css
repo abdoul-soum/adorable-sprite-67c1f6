@@ -1,0 +1,452 @@
+
+/* ORIGINAL CSS UNCHANGED */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f8;
+  line-height: 1.6;
+}
+section { max-width: 1100px; margin: 40px auto; padding: 20px; }
+h2 {
+  color: #003366;
+  font-size: 1.8em;
+  font-weight: bold;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+h1 {
+  color: #003366;
+  font-size: 1.8em;
+  font-weight: bold;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+p { color: #333; text-align: justify; }
+.two-col { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; }
+.two-col div { flex: 1; min-width: 300px; }
+
+
+/* Slideshow */
+.slideshow {
+  position: relative; width: 100%; overflow: hidden;
+  border-radius: 8px; background: #000; text-align: center;
+}
+.slideshow img {
+  display: none; max-width: 100%; max-height: 450px; margin: 0 auto;
+}
+.slideshow img.active { display: block; animation: fadein 1.2s ease-in-out; }
+.caption {
+  color: #fff; background: rgba(0,0,0,1);
+  font-size: 15px; padding: 8px 15px; margin-top: -5px;
+}
+@keyframes fadein { from {opacity: 0;} to {opacity: 1;} }
+
+footer {
+  background:#001a33; color:#fff; text-align:center;
+  padding:20px 0; margin-top:60px;
+}
+
+
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Banner */
+
+
+/* Language flags */
+.lang-flags {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 50;
+}
+
+.lang-flags a {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Tooltip */
+.lang-flags a::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.lang-flags a:hover::after {
+  opacity: 1;
+}
+
+.lang-flags img {
+  height: 24px;
+  width: 24px;
+  object-fit: contain;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.25s ease;
+}
+
+/* Active language */
+.lang-flags a.active img {
+  opacity: 1;
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Hover */
+.lang-flags img:hover {
+  opacity: 1;
+}
+
+
+
+/* Navigation */
+
+
+
+
+
+@media (max-width: 768px) {
+  .ministry-text { display: none; }
+}
+
+.login-btn {
+  margin-left: auto;
+  padding: 8px 18px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+  /* =====================
+   GLOBAL
+===================== */
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* =====================
+   BANNER
+===================== */
+    .banner {
+      width: 100%;
+      background: #e10c13;
+      min-height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 60px;
+    }
+
+    /* Banner Icons */
+    .banner-icon {
+      height: 89px;
+      width: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .banner-icon.left {
+      left: 30px;
+    }
+
+    .banner-icon.right {
+      right: 5px;
+    }
+
+    /* Ministry Text */
+    .ministry-text {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      max-width: 70%;
+      line-height: 1.4;
+      z-index: 10;
+    }
+
+    /* =====================
+   LANGUAGE FLAGS
+===================== */
+    .lang-flags {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 20;
+    }
+
+    .lang-flags img {
+      width: 24px;
+      height: 24px;
+      opacity: 0.6;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .lang-flags a.active img,
+    .lang-flags img:hover {
+      opacity: 1;
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    /* =====================
+   NAVIGATION
+===================== */
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #AF0007;
+      display: flex;
+      align-items: center;
+      padding: 12px 30px;
+      z-index: 1000;
+    }
+
+    .nav-link {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 8px 14px;
+    }
+
+    .nav-link:hover {
+      background: #f50d0d;
+      border-radius: 4px;
+    }
+
+    .nav-active {
+      text-decoration: underline;
+    }
+
+    .login-btn {
+      margin-left: auto;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #120b0b;
+      margin: 5px 0;
+    }
+
+   @media (min-width: 768px) {
+  .nav-top .mobile-only {
+    display: none !important;
+  }
+}
+    /* =====================
+   MOBILE FIX (≤768px)
+===================== */
+    @media (max-width: 768px) {
+
+      @media (max-width: 768px) {
+  section {
+    margin-top: 30px;    /* Drastically reduce top gap */
+    margin-bottom: 20px;
+    padding-top: 0;     /* Remove internal top padding */
+  }
+
+  h2 {
+    margin-top: 0;      /* Ensure the heading touches the top of the section */
+    font-size: 1.5em;   /* Slightly smaller font for better mobile fit */
+  }
+
+  .two-col {
+    gap: 0;             /* Remove vertical gap between stacked columns if needed */
+  }
+
+  .two-col div {
+    min-width: 100%;    /* Force columns to stack perfectly */
+    margin-bottom: 15px; /* Add space between the stacked items instead */
+  }
+}
+
+      /* Banner */
+      .banner {
+        padding: 15px;
+        min-height: 100px;
+      }
+
+      .banner-icon.mb {
+    width: 60px;      /* Increases the width */
+    height: auto;     /* Keeps the aspect ratio perfect */
+    display: block;   /* Optional: center it if needed */
+    margin: 5px auto; /* Optional: adds space and centers it */
+  }
+
+      .banner .ministry-text {
+        display: none !important;
+      }
+
+      nav {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      /* TOP ROW */
+      .nav-top {
+        display: flex;
+        align-items: center;
+        /* ✅ vertical alignment fixed */
+        justify-content: space-between;
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(175, 0, 7, 0.2);
+        /* faded red divider */
+      }
+
+      /* TEXT */
+      .nav-top .mobile-only {
+        flex: 1;
+        font-size: 12px;
+        text-align: left;
+        font-weight: 600;
+        color: #000;
+        line-height: 1.3;
+        padding-right: 12px;
+
+        /* max 2 lines */
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        left: 0;
+      }
+
+      /* HAMBURGER */
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #000;
+        margin: 4px 0;
+      }
+
+
+      /* FIX: ICON SIZE */
+      .banner-icon {
+        height: 45px;
+        /* FIXED SIZE */
+      }
+
+      .banner-icon.left {
+        left: 10px;
+      }
+
+      .banner-icon.right {
+        right: 10px;
+      }
+
+      /* Text */
+      .ministry-text {
+        font-size: 13px;
+        max-width: 90%;
+        text-align: center;
+      }
+
+      /* Flags */
+      .lang-flags {
+        top: 6px;
+        right: 10px;
+      }
+
+      .lang-flags img {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Nav */
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+        background: #ffffff;
+        /* WHITE */
+      }
+
+      .menu-toggle {
+        display: block;
+        align-self: flex-end;
+      }
+
+      nav .nav-link,
+      nav .login-btn {
+        display: none;
+      }
+
+      /* ===== OPENED MENU (FIXED) ===== */
+      nav.open .nav-link,
+      nav.open .login-btn {
+        display: block;
+        text-align: center;
+        padding: 12px;
+        background: #ffffff;
+        /* ✅ WHITE BACKGROUND */
+        color: #AF0007;
+        /* ✅ RED TEXT */
+        font-weight: 600;
+        border-bottom: 1px solid rgba(175, 0, 7, 0.25);
+        /* ✅ FADED RED DIVIDER */
+      }
+
+      /* Remove divider from last item */
+      nav.open .nav-link:last-child {
+        border-bottom: none;
+      }
+    }
